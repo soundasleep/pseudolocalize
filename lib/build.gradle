@@ -1,0 +1,61 @@
+buildscript {
+  ext {
+    jgitverVersion = '0.6.1'
+  }
+    
+  repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+  }
+    
+  dependencies {
+    // add :version task
+    classpath "gradle.plugin.fr.brouillard.oss.gradle:gradle-jgitver-plugin:$jgitverVersion"
+  }
+}
+
+plugins {
+  // Apply the java-library plugin for API and implementation separation.
+  id 'java-library'
+  id 'eclipse'
+}
+
+apply plugin: "fr.brouillard.oss.gradle.jgitver"
+
+repositories {
+  // Use Maven Central for resolving dependencies.
+  mavenCentral()
+}
+
+ext {
+  jdtVersion = '2.2.600'
+  junitVersion = '5.7.2'
+}
+
+dependencies {
+  api "org.eclipse.jdt:org.eclipse.jdt.annotation:$jdtVersion"
+
+  // Use JUnit Jupiter for testing.
+  testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+}
+
+java {
+  withSourcesJar()
+  // withJavadocJar() - I care not for javadocs
+}
+
+tasks.named('test') {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
+
+jgitver {
+  strategy 'PATTERN'
+  versionPattern '${M}.${m}.${meta.COMMIT_DISTANCE}'     
+}
+
+jar {
+  archivesBaseName = "${rootProject.name}"
+}
+
+eclipse.project.name = rootProject.name + "-lib"
