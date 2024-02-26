@@ -84,11 +84,18 @@ public class Pseudolocalizer {
 	 * Turns "hello" into "ħḗŀŀǿ"
 	 */
 	public static String addAccents(String s) {
+		return addAccents(s, LATIN_ACCENT_MAP);
+	}
+	
+	/**
+	 * Turns "hello" into "ħḗŀŀǿ" or similar, using the given map of characters.
+	 */
+	public static String addAccents(String s, Map<Character,Character> replacementMap) {
 		char[] array = s.toCharArray();
 		for (int i = 0; i < array.length; i++) {
 			Character key = Character.valueOf(array[i]);
-			if (LATIN_ACCENT_MAP.containsKey(key)) {
-				array[i] = LATIN_ACCENT_MAP.get(key);
+			if (replacementMap.containsKey(key)) {
+				array[i] = replacementMap.get(key);
 			}
 		}
 		
