@@ -1,4 +1,4 @@
-# pseudolocalize [![](https://jitpack.io/v/soundasleep/pseudolocalize)](https://jitpack.io/#soundasleep/pseudolocalize)
+# pseudolocalize [![](https://jitpack.io/v/soundasleep/pseudolocalize.svg)](https://jitpack.io/#soundasleep/pseudolocalize)
 
 A very simple pseudolocalization library for Java, based on
 [https://github.com/tryggvigy/pseudo-localization/](https://github.com/tryggvigy/pseudo-localization/).
